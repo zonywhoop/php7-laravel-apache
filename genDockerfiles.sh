@@ -41,7 +41,7 @@ RUN apt-get update && apt-get -y install \
     && composer global require "laravel/installer" \
     && mkdir /var/www/laravel
 
-COPY ./docker/apache-laravel.conf /etc/apache2/sites-enabled/000-default.conf
+COPY docker/apache-laravel.conf /etc/apache2/sites-enabled/000-default.conf
 
 EXPOSE 80
 EOF
