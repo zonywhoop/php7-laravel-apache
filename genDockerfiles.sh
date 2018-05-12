@@ -14,6 +14,8 @@ FROM ${dockerFrom}
 
 MAINTAINER Ed McLain <emclain@digitalmotion.tech>
 
+WORKDIR /var/www/laravel
+
 ${dockerAdd}
 
 RUN apt-get update && apt-get -y install \
