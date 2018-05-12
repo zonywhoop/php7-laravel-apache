@@ -38,8 +38,7 @@ RUN apt-get update && apt-get -y install \
     && rm -rf /var/lib/apt/lists/* \
     && curl -o /tmp/composer_setup https://getcomposer.org/installer \
     && php /tmp/composer_setup --install-dir=/usr/local/bin --filename=composer \
-    && composer global require "laravel/installer" \
-    && mkdir /var/www/laravel
+    && composer global require "laravel/installer" 
 
 COPY docker/apache-laravel.conf /etc/apache2/sites-enabled/000-default.conf
 
