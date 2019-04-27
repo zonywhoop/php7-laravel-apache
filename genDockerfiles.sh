@@ -45,7 +45,7 @@ RUN apt-get update \
     && ln -s /etc/apache2/mods-available/rewrite.* /etc/apache2/mods-enabled/ \
     && curl -o /tmp/composer_setup https://getcomposer.org/installer \
     && php /tmp/composer_setup --install-dir=/usr/local/bin --filename=composer \
-    && composer global require "laravel/installer" 
+    && composer global require "laravel/installer" \
     && apt-get remove --purge -y libssl-dev libssl-doc \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean autoclean \
