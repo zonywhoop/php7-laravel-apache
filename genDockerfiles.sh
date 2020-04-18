@@ -3,14 +3,16 @@ PHPFROM=(7.1 7.2 7.4)
 
 for phpver in ${PHPFROM[*]}; do 
     echo "Building Dockerfile for PHP ${phpver}"
-    dockerFrom="php:${phpver}-apache-stretch"
-    dockerAdd=""
-    
+
     if [ "$phpver" == "7.1" ]; then
+      dockerFrom="php:${phpver}-apache-stretch"
       phpmods="bcmath mcrypt xml zip pdo_mysql mysqli sockets pcntl"
     else
+      dockerFrom="php:${phpver}-apache-buster"
       phpmods="bcmath xml zip pdo_mysql mysqli sockets pcntl"
     fi
+
+    dockerAdd=""
 
     if [ ! -d "${phpver}" ]; then
       mkdir ${phpver}

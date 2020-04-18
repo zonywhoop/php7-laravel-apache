@@ -1,4 +1,4 @@
-FROM php:7.2-apache-stretch
+FROM php:7.2-apache-buster
 
 MAINTAINER Ed McLain <emclain@digitalmotion.tech>
 
