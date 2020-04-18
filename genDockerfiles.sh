@@ -1,5 +1,5 @@
 #!/bin/bash
-PHPFROM=(7.0 7.1 7.2)
+PHPFROM=(7.1 7.2 7.4)
 
 for phpver in ${PHPFROM[*]}; do 
     echo "Building Dockerfile for PHP ${phpver}"
