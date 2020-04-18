@@ -6,10 +6,10 @@ for phpver in ${PHPFROM[*]}; do
     dockerFrom="php:${phpver}-apache-stretch"
     dockerAdd=""
     
-    if [ "$phpver" == "7.2" ]; then
-      phpmods="bcmath xml zip pdo_mysql mysqli sockets pcntl"
-    else
+    if [ "$phpver" == "7.1" ]; then
       phpmods="bcmath mcrypt xml zip pdo_mysql mysqli sockets pcntl"
+    else
+      phpmods="bcmath xml zip pdo_mysql mysqli sockets pcntl"
     fi
 
     if [ ! -d "${phpver}" ]; then
