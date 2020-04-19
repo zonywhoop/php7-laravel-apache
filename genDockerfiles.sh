@@ -4,12 +4,17 @@ PHPFROM=(7.1 7.2 7.4)
 for phpver in ${PHPFROM[*]}; do 
     echo "Building Dockerfile for PHP ${phpver}"
 
+    gdBuild="docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/"
+
     if [ "$phpver" == "7.1" ]; then
       dockerFrom="php:${phpver}-apache-stretch"
       phpmods="bcmath mcrypt xml zip pdo_mysql mysqli sockets pcntl"
     else
       dockerFrom="php:${phpver}-apache-buster"
       phpmods="bcmath xml zip pdo_mysql mysqli sockets pcntl"
+      if [ "$phpver" != "7.2" ]; then
+        gdBuild="docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/"
+      fi
     fi
 
     dockerAdd=""
@@ -36,10 +41,11 @@ RUN apt-get update \
         libxml2-dev \
         libcurl4-gnutls-dev \
         zlib1g-dev \
+        libzip-dev \
         git \
         unzip \
     && docker-php-ext-install -j2 $phpmods \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && ${gdBuild} \
     && docker-php-ext-install -j2 gd \
     && echo \$(printf "\n" | pecl install redis) \
     && docker-php-ext-enable redis \
